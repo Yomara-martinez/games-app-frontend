@@ -133,7 +133,7 @@ code {
   padding: 0 1rem;
   display: flex;
   justify-content: space-between;
-  align-items: right;
+  align-items: flex-end;
 }
 
 .site-navbar a {
@@ -144,4 +144,10 @@ code {
 .site-navbar_links {
   display: flex;
   gap: 1rem;
+}
+
+.search-navbar{
+   display: flex;
+   justify-content: flex-start;
+  align-items: flex-start;
 }

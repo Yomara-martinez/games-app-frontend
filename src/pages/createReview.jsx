@@ -93,6 +93,8 @@ function CreateReview({}) {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Description"
+            rows="5" 
+            cols="33"
           />
 
           <label>Duration </label>

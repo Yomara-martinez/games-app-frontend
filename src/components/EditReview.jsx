@@ -65,6 +65,8 @@ function EditReview({ review, updateReview, handleView }) {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Description"
+            rows="5" 
+            cols="33"
           />
 
           <label>Rating</label>
