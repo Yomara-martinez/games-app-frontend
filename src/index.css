@@ -1,3 +1,4 @@
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -108,4 +109,39 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+}
+
+
+
+
+
+
+
+
+/* MY CODE STARTS HERE>>>>>>>>>>>>>>> */
+
+.site-navbar {
+  width: 100%;
+  background: #b8638f;
+  color: white;
+  padding: 1rem 0;
+}
+
+.site-navbar_content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: right;
+}
+
+.site-navbar a {
+  color: white;
+  text-decoration: none;
+}
+
+.site-navbar_links {
+  display: flex;
+  gap: 1rem;
 }

@@ -1,22 +1,25 @@
 import { useState } from 'react'
-import homePage from "./pages/homePage"
-import createReview from "./pages/createReview"
-import reviewPage from "./pages/reviewPage"
-import wanToPlay from "./pages/wanToPlay"
-import playedList from "./pages/playedList"
+import { Route, Routes } from "react-router"
+import HomePage from "./pages/homePage"
+import CreateReview from "./pages/createReview"
+import ReviewPage from "./pages/reviewPage"
+import WanToPlay from "./pages/wanToPlay"
+import PlayedList from "./pages/playedList"
+import NavBar from "./components/Navbar"
 import './App.css'
 
 function App() {
 
   return (
     <>
+    <NavBar/>
 <main>
   <Routes>
     <Route path= "/" element={<HomePage/>} />
-    <Route path= "/create" element={<createReview/>} />
-    <Route path= "/id" element={<reviewPage/>} />
-    <Route path= "/id/playlist" element={<wanToPlay/>} />
-    <Route path= "/id/playedlist" element={<playedList/>} />
+    <Route path= "/create" element={<CreateReview/>} />
+    <Route path= "/:id" element={<ReviewPage/>} />
+    <Route path= "/:id/playlist" element={<WanToPlay/>} />
+    <Route path= "/:id/playedlist" element={<PlayedList/>} />
      <Route path= "*" element={<HomePage/>} />
   </Routes>
 </main>
