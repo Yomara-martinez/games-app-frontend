@@ -1,6 +1,8 @@
 import { Link } from "react-router";
 
-function Navbar() {
+
+function Navbar({search, setSearch}) {
+
   return (
     <nav className="site-navbar" aria-label="Main navigation">
       <div className="site-navbar_content">
@@ -13,6 +15,16 @@ function Navbar() {
           <Link to="/create">  Create Review</Link>
         </div>
       </div>
+      <div>
+        <button>
+       <input 
+type="text"
+placeholder="Search Game..."
+value={search}
+onChange={(e)=> setSearch(e.target.value)}
+/>
+</button>
+      </div> 
     </nav>
   );
 }

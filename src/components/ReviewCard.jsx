@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link } from "react";
 
-function ReviewCard({ review, mode = "summary" }) {
+function ReviewCard({ review }) {
   if (!review) {
     return <p>Loading...</p>;
   }
-  useEffect(() => {}, [review]);
 
   return (
     <div>

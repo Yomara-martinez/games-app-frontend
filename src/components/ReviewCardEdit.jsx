@@ -1,23 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react";
 
-const Genre = [
-  "Action",
-  "Action-Adventure",
-  "Adventure",
-  "Puzzle",
-  "Role-Playing",
-  "Simulation",
-  "Strategy",
-  "Sports",
-  "MMO",
-  "Horror",
-  "Fighting",
-  "Shooter",
-  "Survival",
-  "Educational",
-];
-
-function EditReview({ review, updateReview, handleView }) {
+function ReviewCardEdit({ review, updateReview, handleView }) {
   const [description, setDescription] = useState(review.description);
   const [rating, setRating] = useState(review.rating);
   const [error, setError] = useState("");
@@ -52,34 +36,38 @@ function EditReview({ review, updateReview, handleView }) {
     handleView(false);
   }
 
+  if (!review) {
+    return <p>Loading...</p>;
+  }
+  useEffect(() => {}, [review]);
+
   return (
-    <main>
-      <section></section>
-
-      <section>
-        <form onSubmit={handleSubmit} noValidate>
-          <label>Description</label>
-          <textarea
-            id="review-description"
-            type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            placeholder="Description"
-          />
-
-          <label>Rating</label>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <h1>{review.title} </h1>
+        <div>Duration: {review.duration}h </div>
+        <div>
+          Genre: {review.genre} 
+        </div>
+        <label>Description</label>
+        <textarea
+          id="review-description"
+          type="text"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Description"
+        />
+        <label>Rating</label>
           <input
             id="review-rating"
-            type="number"
+            type="text"
             value={rating}
             onChange={(e) => setRating(e.target.value)}
           />
-
-          <button type="submit">Edit Review</button>
-        </form>
-      </section>
-    </main>
+        <button type="submit">Save Edits</button>
+      </form>
+    </div>
   );
 }
 
-export default EditReview;
+export default ReviewCardEdit;
