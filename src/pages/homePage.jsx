@@ -5,15 +5,14 @@ import Navbar from "../components/Navbar";
 
 function HomePage({ search, setSearch }) {
   const [reviews, setReviews] = useState([]);
+  const [showInput, setShowInput] = useState(false);
 
   useEffect(() => {
     async function fetchReviews() {
-      const API_URL = "http://localhost:8080";
+      const API_URL = "https://games-app-backend-6h13.onrender.com";
       const response = await fetch(`${API_URL}`);
       const data = await response.json();
       setReviews(data);
-      console.log(reviews);
-      
     }
     fetchReviews();
   }, []);
@@ -26,15 +25,18 @@ function HomePage({ search, setSearch }) {
 
   return (
     <main className="page-container">
-      <h1>All Reviews</h1>
-
+      <h1 className='mb-6 text-3xl font-semibold text-(--text-h)'>All Reviews</h1>
       {filteredReviews.length === 0 ? (
-        <p>No reviews have been created</p>
+        <p className='text-sm'>No reviews have been created</p>
       ) : (
-        <div className="poll-list">
+        <div className="poll-list grid grid-cols-1 gap-4 sm:grid-cols-2">
           {filteredReviews.map((review) => (
-            <Link to={`${review.id}`}>
-              <ReviewCard key={review.id} review={review} mode="summary" />
+            <Link
+              onClick={(e) => setSearch("") || setShowInput(false)}
+              to={`${review.id}`}
+              className='block transition hover:-translate-y-0.5'
+            >
+              <ReviewCard review={review} mode="summary" />
             </Link>
           ))}
         </div>
