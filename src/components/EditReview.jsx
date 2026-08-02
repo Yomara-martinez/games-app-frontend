@@ -24,25 +24,27 @@ function EditReview({ review, updateReview, handleView }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
     const trimmedDescription = description.trim();
     const trimmedRating = rating;
+
     if (!trimmedRating || !trimmedDescription) {
       setError("Enter a title, description, rating and genre please.");
       return;
     }
 
-    const API_URL = "http://localhost:8080";
+    const API_URL = "https://games-app-backend-6h13.onrender.com";
     const response = await fetch(`${API_URL}/${review.id}/edit`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify({
         description: trimmedDescription,
         rating: trimmedRating,
       }),
     });
+
     if (!response.ok) {
       throw new Error("Failed to create Review!!");
     }
@@ -53,29 +55,51 @@ function EditReview({ review, updateReview, handleView }) {
   }
 
   return (
-    <main>
+    <main className='mx-auto w-full max-w-md'>
       <section></section>
+      <section className='rounded-xl border border-(--border) p-6 shadow-(--shadow) sm:p-8'>
+        <form onSubmit={handleSubmit} noValidate className='flex flex-col gap-4'>
+          {error && (
+            <p role='alert' className='rounded-md bg-red-500/10 px-3 py-2 text-sm text-red-500'>
+              {error}
+            </p>
+          )}
 
-      <section>
-        <form onSubmit={handleSubmit} noValidate>
-          <label>Description</label>
-          <textarea
-            id="review-description"
-            type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            placeholder="Description"
-          />
+          <div className='flex flex-col gap-1.5'>
+            <label htmlFor='review-description' className='text-sm font-medium text-(--text-h)'>
+              Description
+            </label>
+            <textarea
+              id="review-description"
+              type="text"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Description"
+              rows="5"
+              cols="33"
+              className='w-full rounded-md border border-(--border) bg-transparent px-3 py-2 outline-none transition focus:border-(--accent) focus:ring-2 focus:ring-(--accent-bg)'
+            />
+          </div>
 
-          <label>Rating</label>
-          <input
-            id="review-rating"
-            type="number"
-            value={rating}
-            onChange={(e) => setRating(e.target.value)}
-          />
+          <div className='flex flex-col gap-1.5'>
+            <label htmlFor='review-rating' className='text-sm font-medium text-(--text-h)'>
+              Rating
+            </label>
+            <input
+              id="review-rating"
+              type="number"
+              value={rating}
+              onChange={(e) => setRating(e.target.value)}
+              className='w-full rounded-md border border-(--border) bg-transparent px-3 py-2 outline-none transition focus:border-(--accent) focus:ring-2 focus:ring-(--accent-bg)'
+            />
+          </div>
 
-          <button type="submit">Edit Review</button>
+          <button
+            type="submit"
+            className='mt-2 rounded-md bg-(--accent) px-4 py-2.5 font-medium text-white transition hover:opacity-90'
+          >
+            Edit Review
+          </button>
         </form>
       </section>
     </main>
