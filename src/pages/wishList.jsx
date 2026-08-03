@@ -76,7 +76,8 @@ async function handleDeletewishlist(gameReviewId) {
       <div className='flex flex-col gap-4'>
         {wishlist.map((item) => (
           <div key={item.id} className='rounded-xl border border-(--border) p-4 shadow-(--shadow)'>
-            <h3 className='font-medium text-(--text-h)'>{item["Game Review"].title}</h3>  <button onClick={() => handleDeletewishlist(item.gameReviewId)}> Delete</button>
+            <h3 className='font-medium text-(--text-h)'>{item["Game Review"].title}</h3> 
+             <button onClick={() => handleDeletewishlist(item.gameReviewId)}> Delete</button>
           </div>
         ))}
 

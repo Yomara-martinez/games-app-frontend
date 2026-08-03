@@ -153,7 +153,7 @@ function ReviewPage({ user }) {
             </button>
 
             <button
-              onClick={handleLike}
+              display={handleLike}
               className="rounded-md border border-(--border) p-2 text-lg transition hover:text-(--text-h)"
             >
               <TiHeart />
